@@ -23,3 +23,7 @@ env.bak/
 venv.bak/ 
 
 test*.sh
+
+# IDE and test artifacts
+.vs/
+.coverage
