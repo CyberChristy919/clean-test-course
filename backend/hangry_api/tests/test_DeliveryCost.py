@@ -36,4 +36,43 @@ def test_LittleItems():
     cost = Delivery.calculate(order, del_dist)
 
     # Assert
-    assert cost == 2.50
+    assert cost == 3.50
+
+
+def test_DefaultFeeWithEmptyOrder():
+  # Arrange
+  order = MockSet()
+  delivery_distance = 2
+
+  # Act
+  cost = Delivery.calculate(order, delivery_distance)
+
+  # Assert
+  assert cost == 3.50
+
+
+def test_DefaultFeeAtTenItemsEvenForLongDistance():
+  # Arrange
+  order = MockSet()
+  order.add(MockModel(quantity=5))
+  order.add(MockModel(quantity=5))
+  delivery_distance = 6
+
+  # Act
+  cost = Delivery.calculate(order, delivery_distance)
+
+  # Assert
+  assert cost == 3.50
+
+
+def test_DefaultFeeWhenDistanceIsExactlyFive():
+  # Arrange
+  order = MockSet()
+  order.add(MockModel(quantity=11))
+  delivery_distance = 5
+
+  # Act
+  cost = Delivery.calculate(order, delivery_distance)
+
+  # Assert
+  assert cost == 3.50
